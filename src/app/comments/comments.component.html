@@ -1,0 +1,20 @@
+<div class="comments_container">
+  <div *ngFor="let myComment of myComments | async">
+    <app-comment [commentItem]=myComment></app-comment>
+  </div>
+  <div class="d-flex flex-column mt-3">
+    <textarea class="m-2" [(ngModel)]="newPostMessage"></textarea>
+    <a class="btn-primary ml-2 p-2 mb-3 text-body" (click)="addNewPost()">Add Post</a>
+  </div>
+</div>
+<div *ngIf="userNotLoggedIn" class="drop">
+  <div class="user_form">
+    <form class="modal_form" #f="ngForm" (ngSubmit)="onUserNameEntered(f)">
+      <div class="form-group">
+        <label for="name">User Name to Login</label>
+        <input type="text" class="form-control" name="name" ngModel >
+      </div>
+      <button type="submit" class="btn btn-primary" >Add User</button>
+    </form>
+  </div>
+</div>

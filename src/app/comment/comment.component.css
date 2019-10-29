@@ -1,0 +1,19 @@
+.comment{
+    display: flex;
+    margin-top: 24px;
+}
+
+.comment_info{
+    display: flex;
+    flex-direction: column;
+}
+
+.reply{
+    width:fit-content;
+}
+img{
+    height: 70px;
+}
+.commentDesc{
+    margin:0.5em 0;
+}
