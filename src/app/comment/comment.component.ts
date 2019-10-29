@@ -3,7 +3,7 @@ import { MyComment } from '../Model/comment';
 import { CommentsService } from '../comments.service';
 import { IAppState } from '../State/reducer';
 import { Store } from '@ngrx/store';
-import { AddComment } from '../State/actions';
+import { AddComment, UpdateLikes } from '../State/actions';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -53,6 +53,10 @@ export class CommentComponent implements OnInit {
     else {
       this.userNotLoggedIn = true;
     }
+  }
+
+  updateLikes(){
+    this.store.dispatch(new UpdateLikes(this.commentItem.id))
   }
 
   findDate() {

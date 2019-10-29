@@ -1,27 +1,34 @@
 <div class="comment">
-<div>
-  <img [src]="commentItem.photo != null ? commentItem.photo : defaultImage" al>
-</div>
-<div class="comment_info">
-  <div> <span class="font-weight-bold display-5">{{commentItem.name}}</span> <span class="pl-2 text-muted">{{commentPostedDate}}</span></div>
-  <p class="commentDesc">{{commentItem.description}}</p>
-  <textarea *ngIf="replyEnabled" [(ngModel)]="addedReply">{{addedReply}}</textarea>
-  <a *ngIf="!replyEnabled" class="reply" (click)="enableReplySection()">Reply</a>
-  <a *ngIf="replyEnabled" class="reply" (click)="addReplyToComments()">Add</a>
-
-  <div *ngFor="let comment of commentItem.replies">
-      <app-comment  [commentItem]=comment ></app-comment>
+  <div>
+    <img [src]="commentItem.photo != null ? commentItem.photo : defaultImage" al>
   </div>
-</div>
-</div>
-<div *ngIf="userNotLoggedIn" class="drop">
-    <div class="user_form">
-      <form class="modal_form" #f="ngForm" (ngSubmit)="onUserNameEntered(f)">
-        <div class="form-group">
-          <label for="name">User Name to Login</label>
-          <input type="text" class="form-control" name="name" ngModel >
-        </div>
-        <button type="submit" class="btn btn-primary" >Add User</button>
-      </form>
+  <div class="comment_info">
+    <div> <span class="font-weight-bold display-5">{{commentItem.name}}</span> <span
+        class="pl-2 text-muted">{{commentPostedDate}}</span></div>
+    <p class="commentDesc">{{commentItem.description}}</p>
+    <textarea *ngIf="replyEnabled" [(ngModel)]="addedReply">{{addedReply}}</textarea>
+    <div class="reply_like_section">
+      <a *ngIf="!replyEnabled" class="reply" (click)="enableReplySection()">Reply</a>
+      <a *ngIf="replyEnabled" class="reply" (click)="addReplyToComments()">Add</a>
+      <div *ngIf="!replyEnabled" class="likes_section">
+        <img src="../../assets/images/thumbs_up.svg" (click)="updateLikes()">
+        <span class="likes_cnt">{{commentItem.likes}}</span>
+      </div>
+    </div>
+
+    <div *ngFor="let comment of commentItem.replies">
+      <app-comment [commentItem]=comment></app-comment>
     </div>
   </div>
+</div>
+<div *ngIf="userNotLoggedIn" class="drop">
+  <div class="user_form">
+    <form class="modal_form" #f="ngForm" (ngSubmit)="onUserNameEntered(f)">
+      <div class="form-group">
+        <label for="name">User Name to Login</label>
+        <input type="text" class="form-control" name="name" ngModel>
+      </div>
+      <button type="submit" class="btn btn-primary">Add User</button>
+    </form>
+  </div>
+</div>

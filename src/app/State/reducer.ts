@@ -21,12 +21,12 @@ const initialState: IAppState = {
                     likes: 4,
                     replies: [],
                     photo: "https://img.icons8.com/doodle/96/000000/user.png",
-                    postedTime: new Date(2018,9,12,13,55),
+                    postedTime: new Date(2018, 9, 12, 13, 55),
                     id: 15
                 }
             ],
             photo: "https://img.icons8.com/plasticine/100/000000/user.png",
-            postedTime: new Date(2018,9,12,14,0),
+            postedTime: new Date(2018, 9, 12, 14, 0),
             id: 14
         },
         {
@@ -39,7 +39,7 @@ const initialState: IAppState = {
                 likes: 4,
                 replies: [],
                 photo: "https://img.icons8.com/doodle/96/000000/user.png",
-                postedTime: new Date(2019,0,21,4,56),
+                postedTime: new Date(2019, 0, 21, 4, 56),
                 id: 21
             }, {
                 name: 'User 22',
@@ -47,7 +47,7 @@ const initialState: IAppState = {
                 likes: 4,
                 replies: [],
                 photo: "https://img.icons8.com/doodle/96/000000/user.png",
-                postedTime: new Date(2019,1,22,4,56),
+                postedTime: new Date(2019, 1, 22, 4, 56),
                 id: 22
             }, {
                 name: 'User 23',
@@ -59,15 +59,15 @@ const initialState: IAppState = {
                     likes: 4,
                     replies: [],
                     photo: "https://img.icons8.com/doodle/96/000000/user.png",
-                    postedTime: new Date(2019,9,21,4,56),
+                    postedTime: new Date(2019, 9, 21, 4, 56),
                     id: 24
                 }],
                 photo: "https://img.icons8.com/doodle/96/000000/user.png",
-                postedTime: new Date(2019,2,22,4,56),
+                postedTime: new Date(2019, 2, 22, 4, 56),
                 id: 23
             }],
             photo: null,
-            postedTime: new Date(2018,11,21),
+            postedTime: new Date(2018, 11, 21),
             id: 12
         },
         {
@@ -76,7 +76,7 @@ const initialState: IAppState = {
             likes: 3,
             replies: [],
             photo: "https://img.icons8.com/plasticine/100/000000/user-male.png",
-            postedTime: new Date(2019,9,27,0,56),
+            postedTime: new Date(2019, 9, 27, 0, 56),
             id: 13
         }
     ]
@@ -116,9 +116,16 @@ export function commentReducer(state: IAppState = initialState, action: CommentA
             } else {
                 comments.push(action.payload.comment)
             }
-            return { ...state,
-                 CommentsList: comments 
-                };
+            return {
+                ...state,
+                CommentsList: comments
+            };
+
+        case CommentActionTypes.UpdateLikes:
+            let elementMatched = findTheMatchingNode(state.CommentsList, action.payload)
+            elementMatched.likes += 1;
+            return { ...state };
+
         default:
             return state;
 

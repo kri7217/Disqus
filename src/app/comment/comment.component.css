@@ -10,10 +10,34 @@
 
 .reply{
     width:fit-content;
+    padding-right: 8px;
 }
 img{
     height: 70px;
 }
 .commentDesc{
     margin:0.5em 0;
+}
+
+.reply_like_section{
+    display: flex;
+}
+
+.likes_section{
+    position: relative;
+    padding-right: 12px;
+    width: fit-content;
+}
+
+.likes_section img{
+    width: 10px;
+    height: 15px;
+    cursor: pointer;
+}
+
+.likes_section .likes_cnt{
+    position: absolute;
+    right:0;
+    top:0;
+    font-size: smaller;
 }
